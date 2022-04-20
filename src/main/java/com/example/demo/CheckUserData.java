@@ -21,7 +21,7 @@ public class CheckUserData {
 
          this.jsonObject=jsonObject;
 
-         EnumSet.allOf(LocaleFields.class).forEach(field->{  //проверка заполненности всех полей после передачи
+         EnumSet.allOf(LocaleFields.class).forEach(field->{  //проверка заполненности всех   полей после передачи.
 
              checkNotNullField(String.valueOf(field));
 
