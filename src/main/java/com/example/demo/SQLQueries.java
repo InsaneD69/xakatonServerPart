@@ -4,12 +4,9 @@ import lombok.SneakyThrows;
 import org.json.JSONObject;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import static com.example.demo.SpringServerParthApplication.connectionDB;
-import static com.example.demo.SpringServerParthApplication.nameInfoTable;
+import static com.example.demo.DatabaseConnection.connectionDB;
 
 public class SQLQueries {
 

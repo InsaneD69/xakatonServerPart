@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
@@ -48,8 +45,8 @@ public class HttpController {
 
 
     @RequestMapping(path="/post")
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SpringServerParthApplication.creatConnect();
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws  SQLException {
+        DatabaseConnection.createConnect();
         if (request.getParameter("nameCompany") != null || request.getParameter("isSeller") != null ||
                 request.getParameter("isCustomer") != null || request.getParameter("FCsGenDirector") != null ||
                 request.getParameter("email") != null || request.getParameter("phoneNumber") != null ||

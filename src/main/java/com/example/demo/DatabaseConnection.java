@@ -1,20 +1,14 @@
 package com.example.demo;
 
-import lombok.SneakyThrows;
-import org.json.JSONObject;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.sql.*;
 import org.springframework.stereotype.Controller;
 
 
 @SpringBootApplication
 @Controller
-public class SpringServerParthApplication {
+public class DatabaseConnection {
 	static public String hostName="ec2-52-54-212-232.compute-1.amazonaws.com";
 	static public String DBName="d3juig38qlpane";
 	static public String port="5432";
@@ -24,11 +18,10 @@ public class SpringServerParthApplication {
 	static public String nameInfoTable="public.\"UserSignDataTable\"";
 
 
-	static ServerSocket connection;
-
 	static Connection connectionDB;
-	@SneakyThrows
-	public static void creatConnect() {
+
+	public static void createConnect() throws SQLException {
+
 		openConnectionDB();
 
 		// openConnectionClient();
@@ -72,30 +65,7 @@ public class SpringServerParthApplication {
 
 		closeConnectionDB();
 
-		//SpringApplication.run(SpringServerParthApplication.class, args);
-	}
-
-
-
-
-
-	public static void waitingForRequests() throws IOException {
-
-		Socket input = connection.accept();
-		BufferedReader from_client = new BufferedReader(new InputStreamReader(input.getInputStream()));
-		BufferedWriter send_to = new BufferedWriter(new OutputStreamWriter(input.getOutputStream()));
-		System.out.println("Get message");
-		String incomeMessage = from_client.readLine();
-		System.out.println(" message: "+ incomeMessage+"\n");
-
-		send_to.write("all ok, dont worry"+"\n");
-		send_to.flush();
-
-		send_to.close();
-		from_client.close();
-
-
-
+		//SpringApplication.run(DatabaseConnection.class, args);
 	}
 
 
@@ -124,12 +94,6 @@ public class SpringServerParthApplication {
 
 
 
-	public static void openConnectionClient() throws IOException {
-
-
-		connection=new ServerSocket(27015);
-
-	}
 
 	public static void closeConnectionDB() throws SQLException {
 
@@ -141,11 +105,6 @@ public class SpringServerParthApplication {
 	}
 
 
-	public static void closeConnectionClient() throws  IOException {
-
-		connection.close();
-
-	}
 
 
 
