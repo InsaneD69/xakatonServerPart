@@ -5,17 +5,11 @@ import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @SpringBootApplication
@@ -34,14 +28,14 @@ public class SpringServerParthApplication {
 
 	static Connection connectionDB;
 	@SneakyThrows
-	public static void main(String[] args) {
+	public static void creatConnect() {
 		openConnectionDB();
 
 		// openConnectionClient();
 
 		// waitingForRequests();
 		//тест для нахождения ошибки пустого поля (пока только этой ошибки
-		JSONObject jsonobject =new JSONObject()  {};
+		/*JSONObject jsonobject =new JSONObject()  {};
 
 		jsonobject.put(LocaleFields.nameCompany.name(),"rdrgdfggfden");
 		jsonobject.put(LocaleFields.isCustomer.name(),true);
@@ -74,11 +68,11 @@ public class SpringServerParthApplication {
 		}
 
 		//
-		statement.close();
+		statement.close();*/
 
 		closeConnectionDB();
 
-		SpringApplication.run(SpringServerParthApplication.class, args);
+		//SpringApplication.run(SpringServerParthApplication.class, args);
 	}
 
 
@@ -140,7 +134,7 @@ public class SpringServerParthApplication {
 	public static void closeConnectionDB() throws SQLException {
 
 
-		connectionDB.close();
+		//connectionDB.close();
 
 
 
