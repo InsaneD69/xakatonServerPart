@@ -3,55 +3,47 @@ package com.example.demo;
 
 import org.json.JSONObject;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import static com.example.demo.SpringServerParthApplication.connectionDB;
+import java.util.ArrayList;
 
 
 public class UserRegistration {
 
 
-    JSONObject jsonObject;
+        public ArrayList<String> requestLogs;
+
+
+         JSONObject jsonObject;
 
 
         public UserRegistration(JSONObject jsonObject) throws SQLException {
 
             this.jsonObject=jsonObject;
-            getUserRegistration();
 
-        }
-
-       public void getUserRegistration() throws SQLException {
-
-
-        CheckUserData checkUserData = new CheckUserData(jsonObject);
-
-        if(checkUserData.logs!=null){//отправlяем в клиент ошибкт, если они есть
-
-            checkUserData.logs.forEach(System.out::println);
-
-
-            //return;
+            this.requestLogs= getUserRegistration();
 
         }
 
 
+       public ArrayList<String> getUserRegistration() throws SQLException {
 
 
-
-           //  SQLQueries.createNewUser(jsonObject);
-
+           CheckUserData checkUserData = new CheckUserData(jsonObject);
 
 
+           return  checkUserData.requestLogs;
 
 
-        //отправка на сервер информации, если нету ошибок
+       }
 
 
+      public ArrayList<String> getRequestLogs() {
+
+              return requestLogs;
       }
 
 
+}
 
 
 
@@ -60,7 +52,9 @@ public class UserRegistration {
 
 
 
-    }
+
+
+
 
 
 

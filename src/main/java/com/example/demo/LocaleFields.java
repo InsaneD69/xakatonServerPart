@@ -13,7 +13,14 @@ public enum LocaleFields {
     INN("ИНН"),
     OGRN("ОГРН"),
     KPP("КПП"),
-    password("Пароль");
+    password("Пароль"),
+    productName("Наименование продукции или услуги"),
+    quantity("Количество"),
+    purchasePricet("Стоимость"),
+    deliveryCost("Стоимость, за которую готовы сделать закупку")
+
+
+    ;
 
    public String ruLocale;
 

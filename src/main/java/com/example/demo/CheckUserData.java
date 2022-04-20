@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import lombok.SneakyThrows;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,12 +10,14 @@ public class CheckUserData {
 
      JSONObject jsonObject;
 
-     public ArrayList<String> logs=new ArrayList<>();
+     public ArrayList<String> requestLogs =new ArrayList<>();
 
-
+    boolean errors=false;
 
 
      public  CheckUserData(JSONObject jsonObject) throws SQLException {
+
+
 
          this.jsonObject=jsonObject;
 
@@ -27,30 +28,34 @@ public class CheckUserData {
          });
          if( CheckValueInDB.checkUniquenessValue(LocaleFields.email.name(),jsonObject.getString("email"))){
 
-             logs.add("Почта "+jsonObject.getString("INN")+" уже занята");
+             requestLogs.add("Почта "+jsonObject.getString("INN")+" уже занята");
 
          }
 
             //проверка уникального названия компаниии
         if( CheckValueInDB.checkUniquenessValue(LocaleFields.nameCompany.name(),jsonObject.getString("nameCompany"))){
 
-            logs.add("Компания с названием "+jsonObject.getString("nameCompany")+" уже существует");
+            requestLogs.add("Компания с названием "+jsonObject.getString("nameCompany")+" уже существует");
          }
 
          //проверка уникального инн компаниии
         if( CheckValueInDB.checkUniquenessValue(LocaleFields.INN.name(),jsonObject.getString("INN"))){
 
-            logs.add("ИНН "+jsonObject.getString("INN")+" уже был зарегестрированн");
+            requestLogs.add("ИНН "+jsonObject.getString("INN")+" уже был зарегестрированн");
 
         }
          //проверка уникального огрн компаниии
          if( CheckValueInDB.checkUniquenessValue(LocaleFields.OGRN.name(),jsonObject.getString("OGRN"))){
 
-             logs.add("ОГРН "+jsonObject.getString("OGRN")+" уже был зарегестрированн");
+             requestLogs.add("ОГРН "+jsonObject.getString("OGRN")+" уже был зарегестрированн");
 
          }
 
+        if(!errors){
 
+            requestLogs.add("200");
+
+        }
 
 
 
@@ -65,7 +70,7 @@ public class CheckUserData {
 
         } catch (JSONException e){
 
-            logs.add(  "Ошибка в поле: "+LocaleFields.valueOf(key).ruLocale+ " - поле пустое");
+            requestLogs.add(  "Ошибка в поле: "+LocaleFields.valueOf(key).ruLocale+ " - поле пустое");
 
 
         }
