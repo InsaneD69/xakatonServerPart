@@ -43,17 +43,17 @@ public class SpringServerParthApplication {
 		//тест для нахождения ошибки пустого поля (пока только этой ошибки
 		JSONObject jsonobject =new JSONObject()  {};
 
-		jsonobject.put(LocaleFields.nameCompany.name(),"rdrgen");
+		jsonobject.put(LocaleFields.nameCompany.name(),"rdrgdfggfden");
 		jsonobject.put(LocaleFields.isCustomer.name(),true);
 		jsonobject.put(LocaleFields.isSeller.name(), true);
-		jsonobject.put(LocaleFields.INN.name(), "5333dgf42");
+		jsonobject.put(LocaleFields.INN.name(), "5333dgvxcv42");
 		jsonobject.put(LocaleFields.OGRN.name(), "3152ht34");
-		jsonobject.put(LocaleFields.FCsGenDirector.name(), "qa4zx");
-		jsonobject.put(LocaleFields.email.name(), "Qqwerty@crirretesnge.pzdc");
-		jsonobject.put(LocaleFields.legalAddress.name(), "qwqwefertser t io");
-		jsonobject.put(LocaleFields.KPP.name(), "236ert5432");
-		jsonobject.put(LocaleFields.phoneNumber.name(), "324324ert342");
-		jsonobject.put(LocaleFields.dateOfRegistration.name(),"12:22 12.12.2000");
+		jsonobject.put(LocaleFields.FCsGenDirector.name(), "qa4dsgfzx");
+		jsonobject.put(LocaleFields.email.name(), "Qqwefgsdrty@crirretesnge.pzdc");
+		jsonobject.put(LocaleFields.legalAddress.name(), "qwqwecbvfertser t io");
+		jsonobject.put(LocaleFields.KPP.name(), "236er8t5432");
+		jsonobject.put(LocaleFields.phoneNumber.name(), "324324e8rt342");
+		jsonobject.put(LocaleFields.dateOfRegistration.name(),"22:22 12.12.2000");
 		jsonobject.put(LocaleFields.password.name(), "qwr3fvewr");
 
 		//отсутствует заполнение поля с датой  регистрации

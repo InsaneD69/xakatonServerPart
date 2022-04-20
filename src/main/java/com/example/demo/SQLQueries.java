@@ -83,7 +83,18 @@ public class SQLQueries {
 
 
 
+    public void createRequestCustomer(JSONObject jsonObject){
 
+
+
+
+    }
+    public void createRequestSeller(JSONObject jsonObject){
+
+
+
+
+    }
 
 
 

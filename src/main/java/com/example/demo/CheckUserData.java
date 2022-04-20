@@ -15,7 +15,7 @@ public class CheckUserData {
 
 
 
-     @SneakyThrows
+
      public  CheckUserData(JSONObject jsonObject) throws SQLException {
 
          this.jsonObject=jsonObject;
