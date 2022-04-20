@@ -16,11 +16,9 @@ public enum LocaleFields {
     password("Пароль"),
     productName("Наименование продукции или услуги"),
     quantity("Количество"),
-    purchasePricet("Стоимость"),//hf
-    deliveryCost("Стоимость, за которую готовы сделать закупку")
-
-
-    ;
+    purchasePrice("Стоимость, за которую готовы сделать закупку"),
+    deliveryCost("Стоимость, за которую готовы сделать закупку"),
+    comment("Комментарий") ;
 
    public String ruLocale;
 
