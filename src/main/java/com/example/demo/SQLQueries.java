@@ -1,18 +1,21 @@
 package com.example.demo;
 
-import lombok.SneakyThrows;
+
 import org.json.JSONObject;
+import org.springframework.data.jpa.repository.Modifying;
+
+//import javax.persistence.Id
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import static com.example.demo.DatabaseConnection.connectionDB;
 
 public class SQLQueries {
 
 
-
-    @SneakyThrows
     static public void createNewUser(JSONObject jsonObject) throws SQLException {
 
 
@@ -31,11 +34,6 @@ public class SQLQueries {
                 " values (?,?,?,?,?,?,?,?,?,?,?)";
 
 
-        String authDataQuery ="insert into \"UserAuthData\" "+" (" +
-                "\"email\"," +
-                "\"password\")" +
-                " values (?,?)";
-
         PreparedStatement preparedStatementSign=connectionDB.prepareStatement(signDataQuery);
 
         preparedStatementSign.setString(1,jsonObject.getString("FCsGenDirector"));
@@ -49,27 +47,36 @@ public class SQLQueries {
         preparedStatementSign.setString(9,jsonObject.getString("legalAddress"));
         preparedStatementSign.setString(10,jsonObject.getString("nameCompany"));
         preparedStatementSign.setString(11,jsonObject.getString("phoneNumber"));
+        preparedStatementSign.executeUpdate();
 
-        int rowS = preparedStatementSign.executeUpdate();
-
-        System.out.println(rowS);
+        String authDataQuery ="insert into \"UserAuthData\" "+" (" +
+                "\"email\"," +
+                "\"password\")" +
+                " values (?,?)";
 
 
         PreparedStatement preparedStatementAuth=connectionDB.prepareStatement(authDataQuery);
 
-
         preparedStatementAuth.setString(1,jsonObject.getString("email"));
         preparedStatementAuth.setString(2,jsonObject.getString("password"));
+        preparedStatementAuth.executeUpdate();
 
-
-        int rowA = preparedStatementAuth.executeUpdate();
-        System.out.println(rowA);
 
 
 
     }
 
-    public void deleteUser(){}
+
+    //@Modifying(clearAutomatically = true)
+    public static void deleteUser(String nameTable,String column,String parameter) throws SQLException {//пример аргументов: (nameAuthDataTable, "email","= \'Qqwerty@crirretesnge.pzdc\'")
+
+        String query="DELETE FROM \""+nameTable +"\" WHERE \""+column+"\" "+parameter;
+
+        Statement preparedStatement= connectionDB.createStatement();
+        int resultSet = preparedStatement.executeUpdate(query);
+
+
+    }
 
 
 

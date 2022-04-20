@@ -30,6 +30,7 @@ public class UserRegistration {
 
            CheckUserData checkUserData = new CheckUserData(jsonObject);
 
+           if(requestLogs==null){ SQLQueries.createNewUser(jsonObject);}
 
            return  checkUserData.requestLogs;
 

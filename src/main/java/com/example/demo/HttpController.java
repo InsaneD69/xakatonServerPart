@@ -62,8 +62,8 @@ public class HttpController {
 
                 try {
                     jsonobject.put(LocaleFields.nameCompany.name(), request.getParameter("nameCompany"));
-                    jsonobject.put(LocaleFields.isCustomer.name(), Integer.parseInt(request.getParameter("isCustomer")));
-                    jsonobject.put(LocaleFields.isSeller.name(), Integer.parseInt(request.getParameter("isSeller")));
+                    jsonobject.put(LocaleFields.isCustomer.name(), request.getParameter("isCustomer"));
+                    jsonobject.put(LocaleFields.isSeller.name(), request.getParameter("isSeller"));
                     jsonobject.put(LocaleFields.INN.name(), request.getParameter("INN"));
                     jsonobject.put(LocaleFields.OGRN.name(), request.getParameter("OGRN"));
                     jsonobject.put(LocaleFields.FCsGenDirector.name(), request.getParameter("FCsGenDirector"));
@@ -72,14 +72,25 @@ public class HttpController {
                     jsonobject.put(LocaleFields.KPP.name(), request.getParameter("KPP"));
                     jsonobject.put(LocaleFields.phoneNumber.name(), request.getParameter("phoneNumber"));
                     jsonobject.put(LocaleFields.password.name(), request.getParameter("password"));
+                    jsonobject.put(LocaleFields.dateOfRegistration.name(),  request.getParameter("dateOfRegistration"));
                     UserRegistration userRegistration = new UserRegistration(jsonobject);
 
-
+                    if (userRegistration.getRequestLogs().get(0)=="200"){
+                        PrintWriter out = response.getWriter();
+                        out.println("200");
+                        out.flush();
+                    }else {
+                        PrintWriter out = response.getWriter();
+                        out.println("");
+                        out.flush();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {
                     e.printStackTrace();
 
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }

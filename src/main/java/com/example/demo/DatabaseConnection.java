@@ -6,8 +6,7 @@ import java.sql.*;
 import org.springframework.stereotype.Controller;
 
 
-@SpringBootApplication
-@Controller
+
 public class DatabaseConnection {
 	static public String hostName="ec2-52-54-212-232.compute-1.amazonaws.com";
 	static public String DBName="d3juig38qlpane";
@@ -15,7 +14,8 @@ public class DatabaseConnection {
 	static public String user = "ispfozezsllypp";
 	static public String url ="jdbc:postgresql://ec2-52-54-212-232.compute-1.amazonaws.com:5432/d3juig38qlpane";
 	static private String password ="d726cabb37d69cafb3156b57eb2ea3ac90c6c1057506f7317a1d0c7959215a45";
-	static public String nameInfoTable="public.\"UserSignDataTable\"";
+	static public String nameAuthDataTable ="UserAuthData";
+	static public String nameUserSignTadle ="UserSignDataTable";
 
 
 	static Connection connectionDB;

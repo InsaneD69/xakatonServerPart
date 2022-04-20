@@ -51,11 +51,6 @@ public class CheckUserData {
 
          }
 
-        if(!errors){
-
-            requestLogs.add("200");
-
-        }
 
 
 
