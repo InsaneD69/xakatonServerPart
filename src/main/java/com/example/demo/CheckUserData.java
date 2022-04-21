@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import java.sql.SQLException;
 import java.util.*;
 
+import static com.example.demo.DatabaseConnection.nameAuthDataTable;
+
 public class CheckUserData {
 
      JSONObject jsonObject;
@@ -21,31 +23,31 @@ public class CheckUserData {
 
          this.jsonObject=jsonObject;
 
-         EnumSet.allOf(LocaleFields.class).forEach(field->{  //проверка заполненности всех   полей после передачи.
+         EnumSet.allOf(UserRegistrationFields.class).forEach(field->{  //проверка заполненности всех   полей после передачи.
 
              checkNotNullField(String.valueOf(field));
 
          });
-         if( CheckValueInDB.checkUniquenessValue(LocaleFields.email.name(),jsonObject.getString("email"))){
+         if( CheckValueInDB.checkUniquenessValue(UserRegistrationFields.email.name(),jsonObject.getString("email"),nameAuthDataTable)){
 
              requestLogs.add("Почта "+jsonObject.getString("INN")+" уже занята");
 
          }
 
             //проверка уникального названия компаниии
-        if( CheckValueInDB.checkUniquenessValue(LocaleFields.nameCompany.name(),jsonObject.getString("nameCompany"))){
+        if( CheckValueInDB.checkUniquenessValue(UserRegistrationFields.nameCompany.name(),jsonObject.getString("nameCompany"),nameAuthDataTable)){
 
             requestLogs.add("Компания с названием "+jsonObject.getString("nameCompany")+" уже существует");
          }
 
          //проверка уникального инн компаниии
-        if( CheckValueInDB.checkUniquenessValue(LocaleFields.INN.name(),jsonObject.getString("INN"))){
+        if( CheckValueInDB.checkUniquenessValue(UserRegistrationFields.INN.name(),jsonObject.getString("INN"),nameAuthDataTable)){
 
             requestLogs.add("ИНН "+jsonObject.getString("INN")+" уже был зарегестрированн");
 
         }
          //проверка уникального огрн компаниии
-         if( CheckValueInDB.checkUniquenessValue(LocaleFields.OGRN.name(),jsonObject.getString("OGRN"))){
+         if( CheckValueInDB.checkUniquenessValue(UserRegistrationFields.OGRN.name(),jsonObject.getString("OGRN"),nameAuthDataTable)){
 
              requestLogs.add("ОГРН "+jsonObject.getString("OGRN")+" уже был зарегестрированн");
 
@@ -65,7 +67,7 @@ public class CheckUserData {
 
         } catch (JSONException e){
 
-            requestLogs.add(  "Ошибка в поле: "+LocaleFields.valueOf(key).ruLocale+ " - поле пустое");
+            requestLogs.add(  "Ошибка в поле: "+ UserRegistrationFields.valueOf(key).ruLocale+ " - поле пустое");
 
 
         }

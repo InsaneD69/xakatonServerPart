@@ -47,7 +47,7 @@ public class HttpController {
     @RequestMapping(path="/post")
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws  SQLException {
         DatabaseConnection.createConnect();
-        if (request.getParameter("nameCompany") != null || request.getParameter("isSeller") != null ||
+        /*if (request.getParameter("nameCompany") != null || request.getParameter("isSeller") != null ||
                 request.getParameter("isCustomer") != null || request.getParameter("FCsGenDirector") != null ||
                 request.getParameter("email") != null || request.getParameter("phoneNumber") != null ||
                 request.getParameter("legalAddress") != null || request.getParameter("INN") != null ||
@@ -58,21 +58,24 @@ public class HttpController {
                     !request.getParameter("legalAddress").equals("") && !request.getParameter("INN").equals("") &&
                     !request.getParameter("OGRN").equals("") && !request.getParameter("password").equals("") && !request.getParameter("KPP").equals("")) {
                 JSONObject jsonobject = new JSONObject() {
-                };
+                };*/
+
+                    if(request!=null) {
+                        JSONObject jsonobject = new JSONObject();
 
                 try {
-                    jsonobject.put(LocaleFields.nameCompany.name(), request.getParameter("nameCompany"));
-                    jsonobject.put(LocaleFields.isCustomer.name(), request.getParameter("isCustomer"));
-                    jsonobject.put(LocaleFields.isSeller.name(), request.getParameter("isSeller"));
-                    jsonobject.put(LocaleFields.INN.name(), request.getParameter("INN"));
-                    jsonobject.put(LocaleFields.OGRN.name(), request.getParameter("OGRN"));
-                    jsonobject.put(LocaleFields.FCsGenDirector.name(), request.getParameter("FCsGenDirector"));
-                    jsonobject.put(LocaleFields.email.name(), request.getParameter("email"));
-                    jsonobject.put(LocaleFields.legalAddress.name(), request.getParameter("legalAddress"));
-                    jsonobject.put(LocaleFields.KPP.name(), request.getParameter("KPP"));
-                    jsonobject.put(LocaleFields.phoneNumber.name(), request.getParameter("phoneNumber"));
-                    jsonobject.put(LocaleFields.password.name(), request.getParameter("password"));
-                    jsonobject.put(LocaleFields.dateOfRegistration.name(),  request.getParameter("dateOfRegistration"));
+                    jsonobject.put(UserRegistrationFields.nameCompany.name(), request.getParameter("nameCompany"));
+                    jsonobject.put(UserRegistrationFields.isCustomer.name(), request.getParameter("isCustomer"));
+                    jsonobject.put(UserRegistrationFields.isSeller.name(), request.getParameter("isSeller"));
+                    jsonobject.put(UserRegistrationFields.INN.name(), request.getParameter("INN"));
+                    jsonobject.put(UserRegistrationFields.OGRN.name(), request.getParameter("OGRN"));
+                    jsonobject.put(UserRegistrationFields.FCsGenDirector.name(), request.getParameter("FCsGenDirector"));
+                    jsonobject.put(UserRegistrationFields.email.name(), request.getParameter("email"));
+                    jsonobject.put(UserRegistrationFields.legalAddress.name(), request.getParameter("legalAddress"));
+                    jsonobject.put(UserRegistrationFields.KPP.name(), request.getParameter("KPP"));
+                    jsonobject.put(UserRegistrationFields.phoneNumber.name(), request.getParameter("phoneNumber"));
+                    jsonobject.put(UserRegistrationFields.password.name(), request.getParameter("password"));
+                    jsonobject.put(UserRegistrationFields.dateOfRegistration.name(),  request.getParameter("dateOfRegistration"));
                     UserRegistration userRegistration = new UserRegistration(jsonobject);
 
                     if (userRegistration.getRequestLogs().get(0)=="200"){
@@ -92,7 +95,7 @@ public class HttpController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+
         }
     }
 }
