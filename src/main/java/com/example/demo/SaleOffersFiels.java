@@ -4,8 +4,8 @@ public enum SaleOffersFiels {
 
     productName("Наименование продукции или услуги"),
     quantity("Количество"),
-    purchasePrice("Стоимость, за которую готовы сделать закупку"),
-    deliveryCost("Стоимость, за которую готовы сделать закупку"),
+    nameCompany("Имя компании"),
+    deliveryCost("Стоимость, за которую готовы сделать поставку продукции"),
     comment("Комментарий");
 
     public String ruLocale;
